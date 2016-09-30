@@ -1,23 +1,49 @@
-<h1>Listing articles</h1>
- 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th colspan="2"></th>
-  </tr>
- 
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= markdown(article.title) %></td>
-      <td><%= markdown(article.text) %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy', article_path(article),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Blog</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Write New Blog', new_article_path %></li>
+            
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           
+            <li class="active"><a href="./">Login <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</nav>
 
-<%= link_to 'New article', new_article_path %>
+
+
+<div class="container1">
+          <% @articles.each do |article| %>
+<div class="jumbotron">
+      
+            <h2><%= article.title %></h2>
+            <p><%= markdown(article.text) %></p>
+            <a class="btn btn-success" <%= link_to 'View more»',  article_path(article) %></a>
+            <a class="btn btn-primary" <%= link_to 'Edit»', edit_article_path(article) %></a>
+            <a class="btn btn-danger" <%= link_to 'Delete»', article_path(article),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></a>        
+</div>
+<% end %>
+
+</div><!-- /container -->
+
+ 
+
+
+
+</body>
