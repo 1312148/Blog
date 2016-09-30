@@ -1,40 +1,65 @@
-<p>
-  <strong>Title:</strong>
-  <%= markdown(@article.title) %>
-</p>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Blog</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Home', articles_path %></li>
+            
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           
+            <li class="active"><a href="./">Login <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</nav>
+
+
+
  
-<p>
-  <strong>Text:</strong>
+
+<div class="container1">
+
+<h2><%= @article.title %></h2>
+ 
+<p>  
   <%= markdown(@article.text) %>
 </p>
  
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
- 
-  <p>
-    <strong>Comment:</strong>
+  <p> 
+    <h3><%= comment.commenter %>: </h3>   
     <%= comment.body %>
   </p>
 <% end %>
  
 <h2>Add a comment:</h2>
 <%= form_for([@article, @article.comments.build]) do |f| %>
-  <p>
-    <%= f.label :commenter %><br>
-    <%= f.text_field :commenter %>
-  </p>
-  <p>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+  <fieldset class="form-group">
+        <%= f.label :commenter %><br>
+        <%= f.text_field :commenter, class: "form-control", :placeholder => "Enter your Name here" %>
+    </fieldset>
+    <fieldset class="form-group">
+        <%= f.label :body %><br>
+        <%= f.text_area :body, class: "form-control", :placeholder => "Enter your comment here" %>
+    </fieldset>
+    
+    <%= f.submit "Post", :class => "btn btn-primary" %>
 <% end %>
+
+</div><!-- /container -->
+
  
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+
+</body>

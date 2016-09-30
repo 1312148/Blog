@@ -1,35 +1,61 @@
-<h1>New Article</h1>
-
-<%= form_for :article, url: articles_path do |f| %>
- 
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@article.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @article.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Blog</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Home', articles_path %></li>
+            
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           
+            <li class="active"><a href="./">Login <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</nav>
+<div class="container1">
+<div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Write your blog</h1>
+        </div>
     </div>
-  <% end %>
+    <%= form_for :article, url: articles_path do |f| %>
+    <% if @article.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+        <ul>
+            <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+    <fieldset class="form-group">
+        <%= f.label :title %><br>
+        <%= f.text_field :title, class: "form-control", :placeholder => "Enter your Title here" %>
+    </fieldset>
+    <fieldset class="form-group">
+        <%= f.label :text %><br>
+        <%= f.text_area :text, class: "form-control", :placeholder => "Enter your content here" %>
+    </fieldset>
+    
+    <%= f.submit "Save", :class => "btn btn-primary" %>
+    
+    <% end %>
  
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
  
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
  
-  <p>
-    <%= f.submit %>
-  </p>
- 
-<% end %>
 
-<%= link_to 'Back', articles_path %>
+</div>
+</body>
+
