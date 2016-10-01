@@ -108,6 +108,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     font-weight: 800;
 
     opacity: 0.8;
+    margin-bottom: 8px;
     padding: 16px 32px;
 }
 .btn-round{
